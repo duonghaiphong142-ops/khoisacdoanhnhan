@@ -1,0 +1,60 @@
+HƯỚNG DẪN CÀI TRANG QUẢN TRỊ ĐĂNG BÀI (DECAP CMS) TRÊN NETLIFY
+==============================================================
+
+Cấu trúc thư mục:
+  index.html          trang báo
+  admin/              trang quản trị (khoisacdoanhnhan.net/admin)
+  data/posts.json     nơi lưu bài viết (CMS tự sửa, không cần đụng tay)
+  images/             ảnh cho các bài tóm tắt (đặt tên apec.jpg, trump.jpg...)
+  images/uploads/     ảnh tải lên từ trang quản trị
+  netlify.toml        cấu hình Netlify
+
+BƯỚC 1 - Tạo kho GitHub
+  1. Đăng ký tài khoản tại github.com (nếu chưa có).
+  2. Bấm dấu + góc trên phải > New repository.
+     Repository name: khoisacdoanhnhan  (Private hoặc Public đều được) > Create repository.
+  3. Trong kho vừa tạo, bấm "uploading an existing file".
+  4. Chép ảnh của bạn vào thư mục images/ trước (nếu có).
+     Mở thư mục khoisacdoanhnhan trên máy, chọn TẤT CẢ những gì bên trong
+     (admin, data, images, index.html, netlify.toml...) rồi kéo thả vào trang GitHub.
+     Lưu ý: kéo các mục BÊN TRONG, không kéo cả thư mục khoisacdoanhnhan.
+  5. Bấm Commit changes.
+
+BƯỚC 2 - Sửa 1 dòng cấu hình
+  1. Trên GitHub mở admin/config.yml > bấm biểu tượng bút chì (Edit).
+  2. Dòng  repo: TEN-GITHUB-CUA-BAN/khoisacdoanhnhan
+     -> thay TEN-GITHUB-CUA-BAN bằng tên tài khoản GitHub của bạn.
+  3. Bấm Commit changes.
+
+BƯỚC 3 - Nối Netlify với GitHub
+  1. Vào app.netlify.com > Add new site (Add new project) > Import an existing project > GitHub.
+  2. Cho phép Netlify truy cập GitHub, chọn kho khoisacdoanhnhan.
+  3. Build command: để trống. Publish directory: để trống hoặc ghi dấu chấm (.)  > Deploy.
+  4. Gắn tên miền: nếu khoisacdoanhnhan.net đang gắn ở site cũ (kéo thả),
+     vào site cũ gỡ tên miền ra trước, rồi vào site mới > Domain management > Add domain.
+
+BƯỚC 4 - Tạo "chìa khóa đăng nhập" GitHub (OAuth App)
+  1. GitHub > ảnh đại diện > Settings > Developer settings > OAuth Apps > New OAuth App.
+  2. Điền:
+       Application name:            Khoi Sac Doanh Nhan CMS
+       Homepage URL:                https://khoisacdoanhnhan.net   (hoặc địa chỉ .netlify.app)
+       Authorization callback URL:  https://api.netlify.com/auth/done
+  3. Register application > bấm Generate a new client secret.
+     Ghi lại Client ID và Client secret.
+
+BƯỚC 5 - Gắn chìa khóa vào Netlify
+  1. Netlify > chọn site > Site configuration > Access & security (hoặc Access control) > OAuth.
+  2. Install provider > chọn GitHub > dán Client ID và Client secret > Install.
+
+BƯỚC 6 - Đăng bài
+  1. Mở https://khoisacdoanhnhan.net/admin > Login with GitHub.
+  2. Bấm "Bài viết" > "Danh sách bài viết" > "Add bài viết".
+  3. Điền tiêu đề, chuyên mục, ngày đăng, sapo, nội dung, ảnh bìa...
+     Chèn ảnh giữa bài: trong ô Nội dung bấm + > Image, chọn/tải ảnh, ô "Alt" là chú thích ảnh.
+     Tích "Đưa lên bài nổi bật đầu trang" nếu muốn bài lên vị trí lớn nhất.
+  4. Bấm Publish > Publish now. Khoảng 30-60 giây sau bài hiện trên trang.
+  5. Sửa / xóa bài: mở lại "Danh sách bài viết", sửa hoặc bấm dấu x ở bài cần xóa, rồi Publish.
+
+THÊM NGƯỜI ĐĂNG BÀI
+  Mỗi người cần 1 tài khoản GitHub. Vào kho khoisacdoanhnhan trên GitHub >
+  Settings > Collaborators > Add people > nhập tên GitHub của họ.
