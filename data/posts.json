@@ -1,1 +1,12 @@
-{"posts":[]}
+{
+  "posts": [
+    {
+      "cat": "Thời sự",
+      "featured": false,
+      "title": "jjkkk",
+      "sapo": "r",
+      "body": "rr",
+      "date": "2026-11-16T11:17:00+07:00"
+    }
+  ]
+}
